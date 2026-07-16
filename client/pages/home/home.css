@@ -1,0 +1,80 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  border-bottom: 1px solid #1b3a5f80;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #1b3a5f;
+}
+
+.header {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: #1b3a5f;
+}
+
+.nav-right {
+  gap: 0.75rem;
+}
+
+.nav-left li {
+  list-style: none;
+}
+
+.nav-right li {
+  list-style: none;
+}
+
+.need-service-btn {
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #171d26;
+}
+
+.need-service-btn:hover {
+  background: orange;
+}
+
+.pro-btn {
+  border: 1px solid #dee2e8;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.pro-btn:hover {
+  background-color: orange;
+  color: #171d26;
+}
+
+.getting-started {
+  background-color: rgb(27, 58, 95);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+@media (max-width: 1023px) {
+}
+
+@media (max-width: 767px) {
+  .need-service-btn,
+  .pro-btn {
+    display: none;
+  }
+}
