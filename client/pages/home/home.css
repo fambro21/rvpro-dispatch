@@ -51,30 +51,103 @@
   background: orange;
 }
 
-.pro-btn {
+.pro-btn,
+.join-as-a-pro-btn {
   border: 1px solid #dee2e8;
   padding: 8px 16px;
   border-radius: 8px;
 }
 
-.pro-btn:hover {
+.pro-btn:hover,
+.join-as-a-pro-btn:hover {
   background-color: orange;
   color: #171d26;
 }
 
-.getting-started {
+.getting-started,
+.request-service-btn {
   background-color: rgb(27, 58, 95);
   color: #ffffff;
   padding: 8px 16px;
   border-radius: 8px;
 }
 
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2em 3em;
+  gap: 1rem;
+  width: 100%;
+  background: #f9fafb;
+}
+
+.heading {
+  font-size: 3.75rem;
+}
+
+.veteran-business-badge {
+  color: #171d26;
+  font-weight: 500;
+  line-height: 1rem;
+  padding: 0.2rem 0.625rem;
+  font-size: 0.75rem;
+  background-color: #f0b42833;
+  border-radius: 6px;
+}
+
+.title {
+  display: block;
+}
+
+.subtitle {
+  color: #1b3a5f;
+}
+
+.details-text {
+  display: block;
+  min-width: 425px;
+  max-width: 50%;
+  line-height: 1.625rem;
+  color: #67717e;
+  font-size: 18px;
+}
+
+.available-options-container {
+  display: flex;
+  gap: 10px;
+}
+
+.veteran-business-badge,
+.request-service-btn {
+  display: flex;
+  align-items: center;
+}
+
+.request-service-btn {
+  gap: 10px;
+}
+
+.award-badge,
+.request-service-arrow {
+  height: 1rem;
+  width: 1rem;
+}
+
 @media (max-width: 1023px) {
+  .heading {
+    font-size: 48px;
+  }
 }
 
 @media (max-width: 767px) {
   .need-service-btn,
-  .pro-btn {
+  .pro-btn,
+  .join-as-a-pro-btn-container {
     display: none;
+  }
+
+  .heading {
+    font-size: 36px;
   }
 }
