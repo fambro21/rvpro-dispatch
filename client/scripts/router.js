@@ -3,6 +3,7 @@ import { initializeHome } from "../pages/home/home.js";
 const routes = {
   "/": {
     template: "/pages/home/home.html",
+    style: "/pages/home/home.css",
     initialize: initializeHome,
   },
 };
@@ -16,16 +17,20 @@ export function initializeRouter() {
 
 async function renderCurrentRoute() {
   const currentPath = window.location.pathname;
-  const route = routes[currentPath] || routes["/"];
+  const route = routes[currentPath];
+
+  if (!route) {
+    renderNotFoundPage();
+    return;
+  }
 
   try {
-    const response = await fetch(route.template);
+    showLoadingState();
 
-    if (!response.ok) {
-      throw new Error(`Unable to load ${route.template}`);
-    }
+    await loadPageStyle(route.style);
 
-    const pageHtml = await response.text();
+    const pageHtml = await loadPageTemplate(route.template);
+
     const appElement = document.querySelector("#app");
 
     appElement.innerHTML = pageHtml;
@@ -35,14 +40,53 @@ async function renderCurrentRoute() {
     }
   } catch (error) {
     console.error(error);
-
-    document.querySelector("#app").innerHTML = `
-      <section>
-        <h1>Page unavailable</h1>
-        <p>The page could not be loaded.</p>
-      </section>
-    `;
+    renderErrorPage();
   }
+}
+
+async function loadPageTemplate(templatePath) {
+  const response = await fetch(templatePath);
+
+  if (!response.ok) {
+    throw new Error(`Unable to load template: ${templatePath}`);
+  }
+
+  return response.text();
+}
+
+function loadPageStyle(stylePath) {
+  return new Promise((resolve, reject) => {
+    const pageStyle = document.querySelector("#page-style");
+
+    if (!pageStyle) {
+      reject(new Error("The #page-style element was not found."));
+      return;
+    }
+
+    const requestedStyleUrl = new URL(stylePath, window.location.origin).href;
+
+    if (pageStyle.href === requestedStyleUrl) {
+      resolve();
+      return;
+    }
+
+    pageStyle.onload = () => {
+      pageStyle.onload = null;
+      pageStyle.onerror = null;
+
+      console.log(`Stylesheet loaded: ${stylePath}`);
+      resolve();
+    };
+
+    pageStyle.onerror = () => {
+      pageStyle.onload = null;
+      pageStyle.onerror = null;
+
+      reject(new Error(`Unable to load stylesheet: ${stylePath}`));
+    };
+
+    pageStyle.href = stylePath;
+  });
 }
 
 function handleNavigationClick(event) {
@@ -52,11 +96,48 @@ function handleNavigationClick(event) {
     return;
   }
 
+  const href = link.getAttribute("href");
+
+  if (!href || href.startsWith("http")) {
+    return;
+  }
+
   event.preventDefault();
 
-  const requestedPath = link.getAttribute("href");
+  if (window.location.pathname === href) {
+    return;
+  }
 
-  window.history.pushState({}, "", requestedPath);
+  window.history.pushState({}, "", href);
 
   renderCurrentRoute();
+}
+
+function showLoadingState() {
+  const appElement = document.querySelector("#app");
+
+  appElement.innerHTML = `
+    <section class="page-message">
+      <p>Loading page...</p>
+    </section>
+  `;
+}
+
+function renderNotFoundPage() {
+  document.querySelector("#app").innerHTML = `
+    <section class="page-message">
+      <h1>404</h1>
+      <p>The page could not be found.</p>
+      <a href="/" data-link>Return home</a>
+    </section>
+  `;
+}
+
+function renderErrorPage() {
+  document.querySelector("#app").innerHTML = `
+    <section class="page-message">
+      <h1>Page unavailable</h1>
+      <p>The page could not be loaded.</p>
+    </section>
+  `;
 }
