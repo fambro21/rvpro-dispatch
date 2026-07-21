@@ -292,12 +292,51 @@
   padding: 1rem 5rem;
   background-color: #f9fafb;
   margin-top: 1rem;
+  border-bottom: 1px solid #1b3a5f80;
 }
 
 .getting-started-title {
   font-weight: 700;
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.footer-container {
+  background-color: #ffffff;
+  display: flex;
+  padding: 1em 2em;
+}
+
+.footer-logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #1b3a5f;
+}
+
+.copyright-logo {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 5px;
+  color: #67717e;
+}
+
+.footer-text {
+  font-size: 1rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: #1b3a5f;
+}
+
+.footer-container,
+.footer-container-part-1,
+.footer-container-part-2 {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-container {
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media (max-width: 1023px) {
@@ -362,5 +401,10 @@
 
   .why-rv-details li {
     width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
