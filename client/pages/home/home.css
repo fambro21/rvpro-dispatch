@@ -140,7 +140,9 @@
 }
 
 .how-it-works-header-container,
-.service-we-cover-container {
+.service-we-cover-container,
+.service-we-cover-container,
+.getting-started-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,7 +154,8 @@
 }
 
 .how-it-works-subtitle,
-.service-we-cover-subtitle {
+.service-we-cover-subtitle,
+.getting-started-subtitle {
   color: #67717e;
 }
 
@@ -283,6 +286,18 @@
   color: #ffffff;
   border-radius: 6px;
   line-height: 1.25rem;
+}
+
+.getting-started-container {
+  padding: 1rem 5rem;
+  background-color: #f9fafb;
+  margin-top: 1rem;
+}
+
+.getting-started-title {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 @media (max-width: 1023px) {
