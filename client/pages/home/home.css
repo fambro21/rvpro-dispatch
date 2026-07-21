@@ -210,7 +210,6 @@
 }
 
 .why-rv-container {
-  margin-top: 1rem;
   padding: 2em 3em;
 }
 
@@ -266,7 +265,7 @@
 }
 
 .service-we-cover-container {
-  padding: 1rem 2rem;
+  padding: 2rem;
 }
 
 .services-container {
@@ -289,7 +288,7 @@
 }
 
 .getting-started-container {
-  padding: 1rem 5rem;
+  padding: 2rem 5rem;
   background-color: #f9fafb;
   margin-top: 1rem;
   border-bottom: 1px solid #1b3a5f80;
